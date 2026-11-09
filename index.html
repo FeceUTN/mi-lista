@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Mi Lista — Supermercado</title>
+<meta name="description" content="Lista de compras compartida: cargá lo que falta por categoría y marcalo cuando lo comprás.">
+<meta name="theme-color" content="#0F4D2A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mi Lista">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1 class="hero__title" id="titulo">Mi Lista</h1>
+  <p class="hero__sub">Lista de compras</p>
+  <button class="sync" id="syncBtn" type="button" hidden>
+    <span class="sync__dot" id="syncDot"></span>
+    <span id="syncText">Conectando…</span>
+  </button>
+</header>
+
+<section class="composer" id="composer">
+  <div class="chips" id="chips" role="tablist" aria-label="Categorías"></div>
+
+  <form class="add" id="addForm" autocomplete="off">
+    <input
+      class="add__input"
+      id="nameInput"
+      type="text"
+      inputmode="text"
+      enterkeyhint="done"
+      placeholder="¿Qué falta?"
+      aria-label="Nombre del producto"
+      maxlength="60">
+    <button class="add__btn" type="submit" aria-label="Agregar producto">+</button>
+  </form>
+
+  <div class="suggest" id="suggest" aria-label="Sugerencias"></div>
+</section>
+
+<main class="list" id="list"></main>
+
+<div class="empty" id="empty" hidden>
+  <div class="empty__box">
+    <span class="empty__emoji">🧺</span>
+    <p class="empty__title">La lista está vacía</p>
+    <p class="empty__text">Elegí una categoría arriba y escribí lo que falta.</p>
+  </div>
+</div>
+
+<footer class="bar" id="bar" hidden>
+  <div class="bar__info">
+    <span class="bar__count" id="count">0 de 0</span>
+    <div class="bar__track"><i class="bar__fill" id="fill"></i></div>
+  </div>
+  <button class="bar__btn" id="clearDone" type="button">Borrar comprados</button>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="ask" id="ask">
+  <p class="ask__text" id="askText"></p>
+  <div class="ask__row">
+    <button class="ask__no" id="askNo" type="button">No</button>
+    <button class="ask__yes" id="askYes" type="button">Sí, borrar</button>
+  </div>
+</dialog>
+
+<dialog class="cfg" id="cfg">
+  <h2 class="cfg__title">Lista compartida</h2>
+  <p class="cfg__help">
+    Pegá acá la dirección que te dio Google al publicar la planilla. Todos los que pongan
+    la misma dirección comparten la misma lista.
+  </p>
+  <input class="cfg__input" id="cfgUrl" type="url" inputmode="url"
+         placeholder="https://script.google.com/macros/s/…/exec"
+         aria-label="Dirección de la planilla">
+  <p class="cfg__state" id="cfgState"></p>
+  <div class="cfg__row">
+    <button class="cfg__no" id="cfgCancel" type="button">Cancelar</button>
+    <button class="cfg__yes" id="cfgSave" type="button">Guardar</button>
+  </div>
+  <button class="cfg__off" id="cfgOff" type="button">Usar la lista solo en este celular</button>
+</dialog>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
