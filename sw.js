@@ -1,5 +1,5 @@
 /* Service worker: la app funciona sin internet */
-var CACHE = 'milista-v5';
+var CACHE = 'milista-v6';
 var ASSETS = [
   './',
   './index.html',
